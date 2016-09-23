@@ -51,7 +51,7 @@
 												FROM lieu,etape,tournee
 												WHERE etape.LIEUID = lieu.LIEUID
 												AND etape.TRNNUM = ".$tourneeNum."
-												ORDER BY ETPHREMIN ASC;";
+												ORDER BY ETPID ASC;";
 								//on affiche le resultat de la requete depart_sql ou on indique l'erreur de la requete
 								$depart = mysql_query($depart_sql) or die ( "Impossible d'executer la requete sql : " . mysql_error () );
 								$rowdepart = mysql_fetch_array ( $depart);						
@@ -67,7 +67,7 @@
 												 FROM lieu,etape,tournee
 												 WHERE etape.LIEUID = lieu.LIEUID
 												 AND etape.TRNNUM = ".$tourneeNum."
-												 ORDER BY ETPHREMIN DESC;";
+												 ORDER BY ETPID DESC;";
 								// on affiche le resultat de la requete arrivee_sql ou on indique l'erreur de la requete
 								$arrivee = mysql_query($arrivee_sql) or die ( "Impossible d'executer la requete sql : " . mysql_error () );
 								$rowarrivee =  mysql_fetch_array ( $arrivee);
