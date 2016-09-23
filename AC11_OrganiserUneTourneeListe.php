@@ -32,7 +32,7 @@
 							WHERE tournee.CHFID = chauffeur.CHFID;";
 		
 
-		// On affiche le resultat de la requete SQL ($sqlcorps) ou on indique l'erreur de cette requête
+		// On affiche le resultat de la requete SQL ($sqlcorps) ou on indique l'erreur de cette requête :
 			$result = mysql_query ($sqlcorps) or die ( "Impossible d'executer la requete sql : " . mysql_error () );
 			
 		// On fait une boucle pour lister les résultats

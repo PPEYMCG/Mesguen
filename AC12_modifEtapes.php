@@ -14,11 +14,36 @@ $TRNNUM=trim($_GET['TRNNUM']);
 echo $etpid;
 
 //operations diverses :
-$sql="select lieunom from lieu;";
-$result=tableSQL($sql);
-foreach ($result as $row){
-	$tablelieu[]=$row['lieunom'];
-}
+
+	//on recupere les informations de la tournée en cours de modification :
+
+	$sql="select lieunom from lieu;";
+	$result=tableSQL($sql);
+	foreach ($result as $row){
+		$tablelieu[]=$row['lieunom'];
+	}
+
+	$sql="SELECT lieunom,etphremin,etphremax, etpcommentaire
+		FROM etape,lieu 
+		WHERE etape.lieuid = lieu.lieuid
+		AND trnnum='".$TRNNUM."'
+		AND etpid='".$etpid."'
+	  	;";
+	$result=tableSQL($sql);
+	foreach ($result as $row){
+		$lieu=$row['lieunom'];
+		$hremin=$row['etphremin'];
+		$hremax=$row['etphremax'];
+		$commentaire=$row['etpcommentaire'];
+	}
+
+	//on modifie le format de la date pour pouvoir l'inserer dans le champ datetime-local plus bas :
+	
+	$hreminmodif = str_replace(' ', 'T', $hremin);
+	$hremaxmodif = str_replace(' ', 'T', $hremax);
+	
+	echo $hremaxmodif;
+	echo $hreminmodif;
 ?>
 
 
