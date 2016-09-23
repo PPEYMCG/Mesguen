@@ -41,9 +41,7 @@ echo $etpid;
 	
 	$hreminmodif = str_replace(' ', 'T', $hremin);
 	$hremaxmodif = str_replace(' ', 'T', $hremax);
-	
-	echo $hremaxmodif;
-	echo $hreminmodif;
+
 ?>
 
 
@@ -55,27 +53,32 @@ echo $etpid;
 
 		<p>lieu: 
 		<br/>
-			<select name='nomlieu'>
+			<select name='nomlieu' style="width:220px;">
 			<?php //champs de l'heure :		
-				for ($i=0;$i<=count($tablelieu);$i++){
+				for ($i=0;$i<=count($tablelieu)-1;$i++){
 					$nomlieu = $tablelieu[$i];
-					echo "<option value='".$nomlieu."' default='".$lieu."'>".$nomlieu."</option>";
+					echo "<option value='".$nomlieu."'";
+					
+					if ($tablelieu[$i]== $lieu){
+						echo "selected='selected' ";
+					}
+		
+					echo ">".$nomlieu."</option>";
 				}
-					echo "</select> <br/> </p>"; 
-			?>
-			</select>
+					?>
+					
+			</select> <br/> </p>
 
-
-		<br/>
+ 		<br/>
 		<br/>
 			<label> Rendez-vous entre : </label>
 		<br/>
-			<input name="heuremin" id="heuremin" type="datetime-local">
+			<input name="heuremin" id="heuremin" type="datetime-local" <?php echo "value='$hreminmodif' "; ?>>
 
 		<br/>		
 			<label> et : </label>		
 		<br/>	
-			<input name="heuremax" id="heuremax" type="datetime-local">
+			<input name="heuremax" id="heuremax" type="datetime-local" <?php echo "value='$hremaxmodif' "; ?>>
 
 
 
@@ -91,7 +94,7 @@ echo $etpid;
 		<br/>
 			<label> commentaire pour la tournée : </label>
 		<br/>
-			<textarea name='commentaire'> </textarea>
+			<textarea name='commentaire'> <?php echo $commentaire; ?> </textarea>
 		<br/>
 
 
