@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style type="text/css">
+
+</style>  
 <meta charset="ISO-8859-1">
-<title>formulaire de creation des tournées :</title>
+<title>formulaire de création des tournées :</title>
 </head>
 <body>
 
 <?php 
 
 //je me connecte a la DB :
+	
 	include 'connectAD.php';
+
 //stockage de variable :
+
 	$TRNNUM=trim($_GET['TRNNUM']);
+
 //operations diverses :
-echo $TRNNUM;
+
+	//on recupere les informations de la tournée en cours de modification :
+	
+	$sql="SELECT trndte,chfnom,vehimmat,trncommentaire
+	  FROM tournee,chauffeur
+	  WHERE tournee.chfid = chauffeur.chfid
+	  AND trnnum = '".$TRNNUM."';";
+	
+	$result=tableSQL($sql);
+	foreach ($result as $row){
+		$trndate=$row['trndte'];
+		$chauffeur=$row['chfnom'];
+		$immat=$row['vehimmat'];
+		$commentaire=$row['trncommentaire'];
+	}
+	
+		//on separe la date retournée en deux parties :
+		
+		$trndate2 = explode(' ', $trndate);
+		$trndate3 = $trndate2[0] . "T" . $trndate2[1];
+	
 	//on recupere les noms et prenoms des chauffeurs ainsi que les immat de vehicule :
-		$sql="select chfnom,chfprenom from chauffeur;";
-		$result=tableSQL($sql);
+	
+	$sql="select chfnom,chfprenom from chauffeur;";
+	$result=tableSQL($sql);
 	foreach ($result as $row){
 		$tablenom[]=$row['chfnom'];
 		$tableprenom[]=$row['chfprenom'];		
@@ -28,66 +57,94 @@ echo $TRNNUM;
 	foreach ($result as $row){
 		$tableimmat[]=$row['vehimmat'];
 	}
+	
 //initialisation du compteur pour l'affichage des differentes etapes de la tournée :
-		$compteur = 1;
+	
+$compteur = 1;
 
-		$date = date("d-m-Y H:i:s");
+$date = date("d-m-Y H:i:s");
+ echo "coucou";
 ?>
 
 
 <form id='formulaire' action='AC12_Insert_ModifTournee.php' method='get'>
 	<fieldset>
 
-<?php 
-	echo "<label> Date : </label>
-			<br/>
-				<input name='date' id='date' type='datetime-local' min=$date>
-				";?>
-			<p>Noms des chauffeurs : 
-			<br/>
-			<select name='chfnom'>
+		<label> Date : </label> <br/>
+			<input name='date' id='date' type='datetime-local' 
+			<?php echo "min='$date' value='$trndate3' "; ?>>
+	
+		<p>Noms des chauffeurs : <br/>
+		
+		<select name='chfnom' style="width:100px;">
 			
-<?php 
-	//champs du lieu :		
-	for ($i=0;$i<=count($tablenom);$i++){
-		$chfnom = $tablenom[$i];
-		$chfprenom = $tableprenom[$i];
-		echo "<option value='".$chfnom."'>".$chfnom."</option>";
-	}
-?>
+			<optgroup label="chfnom">
+			
+		<?php 
+			//champs du lieu :		
+			
+			for ($i=0;$i<=count($tablenom);$i++){
+				$chfnom = $tablenom[$i];
+				$chfprenom = $tableprenom[$i];
+				echo "<option value='".$chfnom."' ";
+				
+				if ($tablenom[$i]== $chauffeur){
+					echo "selected='selected' ";
+				}
+			
+				echo ">".$chfnom."</option>";
+			}
+		?>
+			
+			</optgroup>
+		
 		</select> <br/> </p>	
 			
-		<p>Immat des vehicules : 
-		<br/>
-			<select name='immat'>
+		<p>Immat des vehicules : <br/>
+		
+		<select name='immat' style="width:100px;">
+		
+			<optgroup label="vehimmat">
 	
-<?php 
-	//champs du lieu :		
-	for ($i=0;$i<=count($tableimmat);$i++){
-		$vehimmat = $tableimmat[$i];
-		echo "<option value='".$vehimmat."'>".$vehimmat."</option>";
-	}
+		<?php 
+		
+			//champs du lieu :		
+			for ($i=0;$i<=count($tableimmat);$i++){
+			$vehimmat = $tableimmat[$i];
+			echo "<option value='".$vehimmat."'";
+		
+			if ($tableimmat[$i]== $immat){
+				echo "selected='selected' ";
+			}
+		
+			echo ">".$vehimmat."</option>";
+			}
 	
-?>
-</select> <br/> </p>
-			<label> heure de prise en charge : </label>
-		<br/>
-			<input name="heurepec" id="heurepec" type="datetime" value="<?php echo date("d-m-Y H:i:s");?>" 	 disabled>
+		?>
+			
+			</optgroup>
+		
+		</select> <br/> </p>
+		
+		
+		<label> heure de prise en charge : </label> <br/>
+		
+		<input name="heurepec" id="heurepec" type="datetime" value="<?php echo date("d-m-Y H:i:s");?>" 	 disabled> <br/> <br/>
 
-		<br/>
-		<br/>
-			<label> commentaire pour la tournée : </label>
-		<br/>
-			<textarea name='commentaire'> </textarea>
-		<br/>
-			<input name='trnnum' id='trnnum' type=hidden value=<?php echo $TRNNUM; ?> >
+
+		<label> commentaire pour la tournée : </label> <br/>
+		
+		<textarea name='commentaire' style="width:200px;"> <?php echo $commentaire; ?> </textarea> <br/>
+		
+		
+		<input name='trnnum' id='trnnum' type=hidden value=<?php echo $TRNNUM; ?> >
 	
-	<input name='reset' id='reset' type='reset' size=50>
-			<input name='envoyer' id='envoyer' type='submit' size=50 value='Modifier'>
-		<br/>
+	
+		<input name='reset' id='reset' type='reset' size=50>
 		
-		<br/>
-		
+		<input name='envoyer' id='envoyer' type='submit' size=50 value='Modifier'> <br/> <br/>
+
+
 	</fieldset>
 </form>
 
