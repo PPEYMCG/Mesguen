@@ -33,35 +33,38 @@
 		
 
 		// On affiche le resultat de la requete SQL ($sqlcorps) ou on indique l'erreur de cette requête :
-			$result = mysql_query ($sqlcorps) or die ( "Impossible d'executer la requete sql : " . mysql_error () );
+			$result = tableSQL($sqlcorps);
+			$comptesql = compteSQL($sqlcorps);
 			
 		// On fait une boucle pour lister les résultats
-			while ( $donnees = mysql_fetch_array ( $result ) ) {
+			for ($i=0;$i<$comptesql;$i++) {
 			?>
 				<tr>
 					<!-- Ce tableau recupere les données de la database pour les afficher a la suite -->
-					<td><?php echo $donnees['TRNNUM']; ?></td>
-					<td><?php echo $donnees['1']; ?></td>
-					<td><?php echo $donnees['2']; ?></td>
-					<td><?php echo $donnees['3']; ?></td>
+					<td><?php echo $result[$i][0]; ?></td>
+					<td><?php echo $result[$i][1]; ?></td>
+					<td><?php echo $result[$i][2]; ?></td>
+					<td><?php echo $result[$i][3]; ?></td>
 					<td><?php 
-								$tourneeNum = $donnees['0'];
-					
+								$tourneeNum = $result[$i][0];
+								
 								$depart_sql =  "SELECT LIEUNOM
 												FROM lieu,etape,tournee
 												WHERE etape.LIEUID = lieu.LIEUID
 												AND etape.TRNNUM = ".$tourneeNum."
 												ORDER BY ETPID ASC;";
 								//on affiche le resultat de la requete depart_sql ou on indique l'erreur de la requete
-								$depart = mysql_query($depart_sql) or die ( "Impossible d'executer la requete sql : " . mysql_error () );
-								$rowdepart = mysql_fetch_array ( $depart);						
-								echo $rowdepart['0'];
+								$depart = tableSQL($depart_sql);
+								if ($depart) {
+								echo $depart[0][0];
+								//echo $lieu_depart;
+								}
 										
 					?></td>
 					
 					
 					<td><?php
-								$tourneeNum = $donnees['0'];
+								$tourneeNum = $result[$i][0];
 							
 								$arrivee_sql =  "SELECT LIEUNOM
 												 FROM lieu,etape,tournee
@@ -69,18 +72,19 @@
 												 AND etape.TRNNUM = ".$tourneeNum."
 												 ORDER BY ETPID DESC;";
 								// on affiche le resultat de la requete arrivee_sql ou on indique l'erreur de la requete
-								$arrivee = mysql_query($arrivee_sql) or die ( "Impossible d'executer la requete sql : " . mysql_error () );
-								$rowarrivee =  mysql_fetch_array ( $arrivee);
-								echo $rowarrivee['0'];
-								
+								$arrivee = tableSQL($arrivee_sql);
+								if ($arrivee) {
+								echo $arrivee[0][0];
+								//echo $lieu_arrivee;
+								}
 								
 				echo "</td>";					
 		
 	
 				//La premiere ligne permet la modification d'une ligne et la seconde ligne permet, quand à elle, d'en supprimer une
-				echo "<td width='90'><a href='AC12_ModifTournee.php?TRNNUM=".$donnees['TRNNUM']."'><img src='css/edittitre16.png' title='Modifier' /></a></td>";
+				echo "<td width='90'><a href='AC12_ModifTournee.php?TRNNUM=".$result[$i][0]."'><img src='css/edittitre16.png' title='Modifier' /></a></td>";
 
-				echo "<td width='90'><a href='AC12_SupprimerTournee.php?TRNNUM=".$donnees['TRNNUM']."'><img src='css/deletetitre16.png' title='Delete' /></a></td>
+				echo "<td width='90'><a href='AC12_SupprimerTournee.php?TRNNUM=".$result[$i][0]."'><img src='css/deletetitre16.png' title='Delete' /></a></td>
 				
 				</tr>";
 		
