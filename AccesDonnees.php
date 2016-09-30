@@ -18,7 +18,7 @@
  */
 ///////////// CONFIGURATION DE L'ACCES AUX DONNEES ////////////////////
 // nom du moteur d'accès à la base : mysql - mysqli - pdo
-$modeacces = "mysqli";
+$modeacces = "pdo";
 // enregistrement des logs de connexion : true - false
 $logcnx = TRUE;
 // enregistrement des requetes SQL : none - all - modif
