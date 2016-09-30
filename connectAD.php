@@ -6,6 +6,7 @@
 	switch ($ip[0]) {
 
 		case 31 :
+			//connexion à hostinger
 			$host = "31.220.16.2";
 			$user = "u156178435";
 			$password = "P@ssword";
