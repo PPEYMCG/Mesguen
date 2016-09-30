@@ -14,14 +14,15 @@
 			$port='3306';
 			break;
 		case 127 :
-		case 192 :
-		//local
+			//local
 			$host = "127.0.0.1";
 			$user = "root";
 			$password = "";
 			$dbname = "mesguen_appli_chauffeur";
 			$port='3306';
 			break;
+		case 192 :
+		
 			
 		default :
 			exit ("Serveur non reconnu...");
