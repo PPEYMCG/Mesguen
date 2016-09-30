@@ -2,7 +2,7 @@
 include 'connectAD.php';
 $TRNNUM=trim($_GET['TRNNUM']);
 
-$sql="delete from tournee where TRNNUM='".$TRNNUM."' cascade;";
+$sql="delete from tournee where TRNNUM='".$TRNNUM."';";
 
 executeSQL($sql);
 
