@@ -5,6 +5,13 @@
 
 	switch ($ip[0]) {
 
+		case 31 :
+			$host = "31.220.16.2";
+			$user = "u156178435";
+			$password = "P@ssword";
+			$dbname = "u156178435_mappc";
+			$port='3306';
+			break;
 		case 127 :
 		case 192 :
 		//local
