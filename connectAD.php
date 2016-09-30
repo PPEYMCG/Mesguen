@@ -7,8 +7,8 @@
 
 		case 31 :
 			//connexion à hostinger
-			$host = "31.220.16.2";
-			$user = "u156178435";
+			$host = "mysql.hostinger.fr";
+			$user = "u156178435_mappc";
 			$password = "P@ssword";
 			$dbname = "u156178435_mappc";
 			$port='3306';
