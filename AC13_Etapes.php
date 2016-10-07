@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+        <link rel="stylesheet" href="cssForm.css" />
+
+<title>formulaire de creation des tournées :</title>
+</head>
+<body>
+
 <?php 
 //je me connecte a la DB :
 include 'connectAD.php';
@@ -70,3 +80,7 @@ foreach ($result as $row){
 		<br/>
 
 </form>
+
+
+</body>
+</html>

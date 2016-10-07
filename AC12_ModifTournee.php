@@ -2,7 +2,8 @@
 <html>
 <head>
 
-<style type="text/css">
+        <link rel="stylesheet" href="cssForm.css" />
+
 
 </style>  
 <meta charset="ISO-8859-1">
