@@ -31,13 +31,13 @@
 	
 	$connexion=connexion($host,$port,$dbname,$user,$password);
 	
-	
+	/*
 	 if ($connexion) {
 		echo "Connexion reussie<br />";
 		echo "Base $dbname selectionnee... <br />";
 		echo "Mode acces : $modeacces<br />";
 	}
-	
+	*/
 
 ?>
 
