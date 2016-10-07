@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<div class="centrage" id="global">
+
 <?php 
 //je me connecte a la DB :
 include 'connectAD.php';
@@ -50,7 +53,7 @@ echo $etpid;
 
 <form id='formulaire' action='AC12_insert_modifEtape.php' method='get'>
 	<fieldset>
-
+	<div class="centrage" id="globalfieldset">
 
 
 		<p>lieu: 
@@ -102,7 +105,10 @@ echo $etpid;
 
 		<br/>
 		<input name='etpid' id='etpid' type=hidden value=<?php echo $etpid; ?> >
+		
+	</div>	
 	</fieldset>
+	
 		
 		<input name='trnnum' id='trnnum' type=hidden value=<?php echo $TRNNUM; ?> >
 			<input name='reset' id='reset' type='reset' size=50>
@@ -111,6 +117,7 @@ echo $etpid;
 
 </form>
 
+</div>
 
 </body>
 </html>

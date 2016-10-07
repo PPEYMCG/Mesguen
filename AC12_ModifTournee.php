@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<div class="centrage" id="global">
+
 <?php 
 
 //je me connecte a la DB :
@@ -70,7 +72,8 @@ $date = date("d-m-Y H:i:s");
 
 <form id='formulaire' action='AC12_Insert_ModifTournee.php' method='get'>
 	<fieldset>
-
+	<div class="centrage" id="globalfieldset">
+	
 		<label> Date : </label> <br/>
 			<input name='date' id='date' type='datetime-local' 
 			<?php echo "min='$date' value='$trndate3' "; ?>>
@@ -145,8 +148,9 @@ $date = date("d-m-Y H:i:s");
 		
 		<input name='envoyer' id='envoyer' type='submit' size=50 value='Modifier'> <br/> <br/>
 
-
+	</div>
 	</fieldset>
+
 </form>
 
 	
@@ -157,7 +161,8 @@ $date = date("d-m-Y H:i:s");
 		$num_rows = compteSQL($sql);
 		
 	if ($num_rows != 0){
-		echo "<fieldset>
+		echo "<div>
+		<fieldset>
 		Etapes : <br/>";
 		foreach ($result as $row){
 			$lieu[]=$row['LIEUNOM'];
@@ -173,7 +178,7 @@ $date = date("d-m-Y H:i:s");
 			<tr/> <table/> <br/>";
 		$compteur += 1
 		;}
-		echo "</fieldset>";
+		echo "</fieldset> </div>";
 	}	
 	
 	
@@ -181,5 +186,8 @@ $date = date("d-m-Y H:i:s");
 		
 		echo "<a href='AC13_Etapes.php?TRNNUM=".$TRNNUM."'> <input name='ajouter' id='ajouter' type='button' size=50 value='ajouter une etape'> </a> ";
 ?>
+
+</div>
+
 </body>
 </html>

@@ -101,9 +101,8 @@
 
 		</table>
 		</div>
-			<a href='AC12_Tournee.php'><input type="button" name="Ajouter" value="Ajouter" style="background-color:#FFFFFF" style="color:white; font-weight:bold"> </a>
+			<a href='AC12_Tournee.php'><input type="button" name="Ajouter" value="Ajouter" > </a>
 		
-		
-			<input type="button" name="Retour" value="Retour" onclick="href='AC11_OrganiserUneTourneeListe.php'" style="background-color:#FFFFFF" style="color:white; font-weight:bold">
+			<input type="button" name="Retour" value="Retour" onclick="href='AC11_OrganiserUneTourneeListe.php'">
     </body>
 </html>

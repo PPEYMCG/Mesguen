@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<div class="centrage" id="global">
+
 <?php 
 
 //je me connecte a la DB :
@@ -39,6 +41,7 @@
 
 <form id='formulaire' action='AC12_insertTournee.php' method='get'>
 	<fieldset>
+	<div class="centrage" id="globalfieldset">
 
 <?php 
 	echo "<label> Date : </label>
@@ -72,13 +75,13 @@
 	
 ?>
 </select> <br/> </p>
-			<label> heure de prise en charge : </label>
+			<label> Heure de prise en charge : </label>
 		<br/>
-			<input name="heurepec" id="heurepec" type="datetime" value="<?php echo date("d-m-Y H:i:s");?>" 	 disabled>
+			<input name="heurepec" id="heurepec" type="datetime" value="<?php echo date("d-m-Y H:i:s");?>" 	 style="background-color:#f1f1f1;" disabled >
 
 		<br/>
 		<br/>
-			<label> commentaire pour la tournée : </label>
+			<label> Commentaire pour la tournée : </label>
 		<br/>
 			<textarea name='commentaire'> </textarea>
 		<br/>
@@ -88,10 +91,12 @@
 		<br/>
 		
 		<br/>
-		
+	</div>		
 	</fieldset>
+
 </form>
 
+</div>
 
 </body>
 </html>

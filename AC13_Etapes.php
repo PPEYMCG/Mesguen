@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<div class="centrage" id="global">
+
 <?php 
 //je me connecte a la DB :
 include 'connectAD.php';
@@ -26,7 +28,7 @@ foreach ($result as $row){
 
 <form id='formulaire' action='AC13_insertEtapes.php' method='get'>
 	<fieldset>
-
+	<div class="centrage" id="globalfieldset">
 
 
 		<p>lieu: 
@@ -73,13 +75,16 @@ foreach ($result as $row){
 
 		<br/>
 	</fieldset>
+	</div>
 		<input name='trnnum' id='trnnum' type=hidden value=<?php echo $TRNNUM; ?> >
 		
 			<input name='reset' id='reset' type='reset' size=50>
 			<input name='envoyer' id='envoyer' type='submit' size=50>
 		<br/>
-
+		
+</div>
 </form>
+
 
 
 </body>
