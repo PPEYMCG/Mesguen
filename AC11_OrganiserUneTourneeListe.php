@@ -2,12 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8" />
- 
+ 		<link rel="stylesheet" href="css1.css" />
         <title>AC11 - organiser une tournée</title>
     </head>
 
     <body>
-		<?php include 'connectAD.php' //Connexion a la database        <link rel="stylesheet" href="css1.css" />?>
+		<?php include 'connectAD.php' //Connexion a la database       ?>
 	
 		<!-- Je créer un tableau appelé affichetableau ayant comme en-tete les differents infos qu'il me faut -->
 		<div style="overflow-x:auto;">
